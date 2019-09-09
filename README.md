@@ -22,18 +22,39 @@ How to setup Oracle Linux to use python to execute SQL scripts on an ADW/ATP Ins
 
 10. sudo sh -c "echo /opt/oracle/instantclient_19_3 > /etc/ld.so.conf.d/oracle-instantclient.conf"
 
-11. sudo ldconfig
+11. export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH
 
-12. export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH
+12. mkdir -p /opt/oracle/instantclient_19_3/network/admin
 
-13. mkdir -p /opt/oracle/instantclient_19_3/network/admin
+13. export TNS_ADMIN=/opt/oracle/instantclient_19_3/network/admin/
 
-14. export TNS_ADMIN=/opt/oracle/instantclient_19_3/network/admin/
+14. sudo ldconfig
 
-15. sudo ldconfig
+15. sudo cp cwallet.sso  /opt/oracle/instantclient_19_3/network/admin/
 
-16. sudo cp cwallet.sso  /opt/oracle/instantclient_19_3/network/admin/
+16. sudo cp tnsnames.ora  /opt/oracle/instantclient_19_3/network/admin/
 
-17. sudo cp tnsnames.ora  /opt/oracle/instantclient_19_3/network/admin/
+17. sudo cp sqlnet.ora /opt/oracle/instantclient_19_3/network/admin/
 
-18. sudo cp sqlnet.ora /opt/oracle/instantclient_19_3/network/admin/
+
+## Python
+At this point you should have the python module installed. A test script to connect to your database is bellow:
+
+
+#!/usr/bin/env python
+
+import cx_Oracle
+
+print('preconnection')
+
+connection = cx_Oracle.connect('USERNAME', 'PASSWORD', 'SERVICE_NAME')
+
+print('Connected')
+
+cursor = connection.cursor()
+
+cursor.execute('SELECT * from TEST')
+
+print('Executed Select')
+
+connection.close()
