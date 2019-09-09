@@ -16,7 +16,7 @@ How to setup Oracle Linux to use python to execute SQL commands on an ADW/ATP In
 
 7. sudo mv instantclient_19_3/ /opt/oracle/
 
-8. cd /opt/oracle/instant_client_19_3/
+8. cd /opt/oracle/instantclient_19_3/
 
 9. sudo yum install libaio
 
