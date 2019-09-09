@@ -1,5 +1,5 @@
 # Oracle_Linux_Python_to_ADW/ATP
-How to setup Oracle Linux to use python to execute SQL scripts on an ADW/ATP Instance in Oracle Cloud.
+How to setup Oracle Linux to use python to execute SQL commands on an ADW/ATP Instance in Oracle Cloud.
 
 ## Gather the required files and install.
 1. Download your cloud wallet zip files that contain your sqlnet.ora, tnsnames.ora and cwallet.sso files. These can be downloaded from the ATP/ADW instance from the web interface console.
